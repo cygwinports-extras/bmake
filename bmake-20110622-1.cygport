@@ -1,0 +1,28 @@
+DESCRIPTION="BSD make"
+HOMEPAGE="http://www.crufty.net/help/sjg/bmake.html"
+SRC_URI="http://www.crufty.net/ftp/pub/sjg/bmake-${PV}.tar.gz
+         http://www.crufty.net/ftp/pub/sjg/mk-${PV}.tar.gz"
+SRC_DIR=.
+
+src_compile() {
+	cd ${B}
+	CYGCONF_SOURCE=${S}/bmake
+	cygconf --with-default-sys-path=/usr/share/mk --with-machine=cygwin --with-machine_arch=i386
+	sh make-bootstrap.sh || error
+}
+
+src_test() {
+	cd ${B}
+	./bmake -m ${S}/mk test
+}
+
+src_install() {
+	dobin ${B}/bmake.exe
+
+	cd ${S}/bmake
+	doman bmake.1
+	dodoc README
+
+	cd ${S}/mk
+	./install-mk ${D}/usr/share/mk
+}
