@@ -1,5 +1,0 @@
-category: Devel
-requires:
-sdesc: "BSD make tool"
-ldesc: "This package contains a port of the BSD make tool (from 
-NetBSD) for Linux and other *NIX systems."

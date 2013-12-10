@@ -1,7 +1,13 @@
-DESCRIPTION="BSD make"
+NAME="bmake"
+VERSION=20110622
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="BSD make tool"
+DESCRIPTION="This package contains a port of the BSD make tool (from NetBSD)
+for Linux and other *NIX systems."
 HOMEPAGE="http://www.crufty.net/help/sjg/bmake.html"
-SRC_URI="http://www.crufty.net/ftp/pub/sjg/bmake-${PV}.tar.gz
-         http://www.crufty.net/ftp/pub/sjg/mk-${PV}.tar.gz"
+SRC_URI="http://www.crufty.net/ftp/pub/sjg/bmake-${VERSION}.tar.gz
+         http://www.crufty.net/ftp/pub/sjg/mk-${VERSION}.tar.gz"
 SRC_DIR=.
 
 src_compile() {
