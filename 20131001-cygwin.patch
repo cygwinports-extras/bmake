@@ -1,0 +1,11 @@
+--- origsrc/bmake/main.c	2013-10-01 10:54:21.000000000 -0500
++++ src/bmake/main.c	2013-12-09 20:16:43.888512400 -0600
+@@ -118,7 +118,7 @@ __RCSID("$NetBSD: main.c,v 1.225 2013/09
+ #include <sys/param.h>
+ #include <sys/resource.h>
+ #include <sys/stat.h>
+-#ifdef MAKE_NATIVE
++#ifdef __linux__
+ #include <sys/sysctl.h>
+ #endif
+ #include <sys/utsname.h>

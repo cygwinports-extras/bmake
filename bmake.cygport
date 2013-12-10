@@ -1,19 +1,21 @@
 NAME="bmake"
-VERSION=20110622
+VERSION=20131001
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="BSD make tool"
 DESCRIPTION="This package contains a port of the BSD make tool (from NetBSD)
 for Linux and other *NIX systems."
 HOMEPAGE="http://www.crufty.net/help/sjg/bmake.html"
-SRC_URI="http://www.crufty.net/ftp/pub/sjg/bmake-${VERSION}.tar.gz
-         http://www.crufty.net/ftp/pub/sjg/mk-${VERSION}.tar.gz"
-SRC_DIR=.
+SRC_URI="http://www.crufty.net/ftp/pub/sjg/bmake-${VERSION}.tar.gz"
+SRC_DIR="bmake"
+PATCH_URI="20131001-cygwin.patch"
 
 src_compile() {
 	cd ${B}
-	CYGCONF_SOURCE=${S}/bmake
-	cygconf --with-default-sys-path=/usr/share/mk --with-machine=cygwin --with-machine_arch=i386
+	cygconf \
+		--with-default-sys-path=/usr/share/${NAME} \
+		--with-machine=cygwin \
+		--with-machine_arch=${ARCH/i6/i3}
 	sh make-bootstrap.sh || error
 }
 
@@ -25,10 +27,10 @@ src_test() {
 src_install() {
 	dobin ${B}/bmake.exe
 
-	cd ${S}/bmake
+	cd ${S}
 	doman bmake.1
 	dodoc README
 
 	cd ${S}/mk
-	./install-mk ${D}/usr/share/mk
+	./install-mk ${D}/usr/share/bmake
 }
